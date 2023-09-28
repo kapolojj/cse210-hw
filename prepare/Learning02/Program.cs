@@ -12,5 +12,10 @@ class Program
 
         Console.WriteLine(carName);
         Console.WriteLine(vanName);
+        color colorobject = new color ();
+        var NewColor = colorobject.NewColor ();
+
+        Console.WriteLine($"{NewColor}");
+
     }
 }

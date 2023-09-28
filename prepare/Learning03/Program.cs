@@ -4,14 +4,20 @@ class Program
 {
     static void Main(string[] args)
     {
-        Car myCarObject = new Car();
-        var CarName = myCarObject.CarName();
+        Fraction f1 = new Fraction();
+        Console.WriteLine(f1.GetFractionString());
+        Console.WriteLine(f1.GetDecimalValue());
 
-        Car2 myCarObject2 = new Car2();
-        var CarName2 = myCarObject2.CarName2();
+        Fraction f2 = new Fraction(5);
+        Console.WriteLine(f2.GetFractionString());
+        Console.WriteLine(f2.GetDecimalValue());
 
-        // total = CarName + CarName2
+        Fraction f3 = new Fraction(3, 4);
+        Console.WriteLine(f3.GetFractionString());
+        Console.WriteLine(f3.GetDecimalValue());
 
-        Console.WriteLine($"{CarName + CarName2}");
+        Fraction f4 = new Fraction(1, 3);
+        Console.WriteLine(f4.GetFractionString());
+        Console.WriteLine(f4.GetDecimalValue());
     }
 }
