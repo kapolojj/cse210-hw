@@ -20,11 +20,11 @@ class ListingActivity
 
      private static List<string> questions = new List<string>
     {
-        "When have you felt the holy ghost this month? ",
-        "What promptings did you get reading the scriptures today? ",
-        "In what way did you follow the saviour today? ",
-        "What plans do you have for your family this week? ",
-        "What are your plans for this week? "
+        "Who are people that you appreciate? ",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt the Holy Ghost this month?",
+        "Who are some of your personal heroes?"
     };
 
     public void StartListingActivity()

@@ -17,11 +17,23 @@ class ReflectingActivity
 
     private static List<string> questions = new List<string>
     {
-        "When have you felt the Holy Ghost this month?",
-        "What promptings did you get reading the scriptures today?",
-        "In what way did you follow the Savior today?",
-        "What plans do you have for your family this week?",
-        "What are things do you plan to do better this week?"
+        "Think of a time when you stood up for someone else.",
+        "Think of a time when you did something really difficult.",
+        "Think of a time when you helped someone in need.",
+        "Think of a time when you did something truly selfless."
+    };
+
+    private static List<string> questions_2 = new List<string>
+    {
+        "Why was this experience meaningful to you?",
+        "Have you ever done anything like this before?",
+        "How did you get started?",
+        "How did you feel when it was complete?",
+        "What made this time different than other times when you were not as successful?",
+        "What is your favorite thing about this experience?",
+        "What could you learn from this experience that applies to other situations?",
+        "What did you learn about yourself through this experience?",
+        "How can you keep this experience in mind in the future?"
     };
 
     public void StartReflectionActivity()
@@ -60,10 +72,33 @@ class ReflectingActivity
             }
 
             Console.Clear();
+
+            if (questions_2.Count > 0)
+            {
+                int randomIndex_1 = random.Next(questions_2.Count);
+                string currentQuestion_1 = questions_2[randomIndex_1];
+                questions_2.RemoveAt(randomIndex_1);
+
+                Console.WriteLine($"Question: {currentQuestion_1}");
+
+                int timeLeft_1 = totalTimeSeconds;
+
+                Console.Write($"Loading your answers (Time Left: {timeLeft_1} seconds)...");
+                while (timeLeft_1 > 0)
+                {
+                    Console.Write(new string('\b', Console.CursorLeft));
+                    Console.Write(new string(' ', Console.WindowWidth - 1));
+                    Console.Write(new string('\b', Console.CursorLeft));
+                    Thread.Sleep(1000);
+                    timeLeft_1--;
+                }
+
+                Console.Clear();
+            }
         }
 
         Console.WriteLine("Reflection exercise completed!");
-        
+
         // Add loading messages
         Console.Write("Loading menu...");
         for (int i = 5; i > 0; i--)
