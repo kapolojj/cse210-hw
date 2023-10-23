@@ -1,27 +1,59 @@
-public class ChecklistGoal : Goal
-{
-    private int _count = 0;
-    private int _targetCount;
+public class Checklist : Goal {
+    private int _reachBonus;
+    private int _bonusPoints;
+    
+    public Checklist() : base() {
 
-    public ChecklistGoal(string name, int points, int targetCount) : base(name, points)
-    {
-        _targetCount = targetCount;
+        this._reachBonus = SetReachBonus();
+        this._bonusPoints = SetBonusPoints();
+    }
+    public Checklist(string name, string description, double points, int timesFinished, int reach, int bonus):
+    base(name, description, points, timesFinished) {
+
+        this._reachBonus = reach;
+        this._bonusPoints = bonus;
     }
 
-    public override void RecordEvent()
-    {
-        _count++;
-        Console.WriteLine($"Recorded progress on goal: {Name} (+{Points} points)");
+    protected int SetReachBonus(){
+        Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+        return int.Parse(Console.ReadLine());
+    }
+    protected int SetBonusPoints(){
+        Console.Write("What is the bonus for accomplishing it that many times?");
+        return int.Parse(Console.ReadLine());
+    }
+    public override int GetReachBonus(){
+        return this._reachBonus;
+    }
+    public override int GetBonusPoints(){
+        return this._bonusPoints;
+    }
 
-        if (_count == _targetCount)
-        {
-            Points += 500;
-            Console.WriteLine($"Completed goal: {Name} (+500 bonus points)");
+    public override void ListGoal() {
+        base.ListGoal();
+        Console.Write($" --- Currently completed: {this._timesCompleted}/{this._reachBonus}\n");
+    }
+    public override bool IsComplete(){
+        if(this._timesCompleted >= this._reachBonus){
+            return true;
+        }
+        else {
+            return false;
         }
     }
-
-    public override string GetStatus()
-    {
-        return $"Completed {_count}/{_targetCount} times: {Name}";
+    public override double RecordEvent(){
+        base.RecordEvent();
+        if(IsComplete()){
+            return AwardPoints(this._bonusPoints + this._points);
+        }
+        else {
+            return AwardPoints(this._points);
+        }
+    }
+    public override string SerializeSelf(){
+        this._formattedString = "checklist";
+        base.SerializeSelf();
+        this._formattedString += $":{this.GetReachBonus()}:{this.GetBonusPoints()}";
+        return this._formattedString;
     }
 }

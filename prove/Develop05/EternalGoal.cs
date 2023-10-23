@@ -1,17 +1,26 @@
-public class EternalGoal : Goal
-{
-    private int _count = 0;
+public class Eternal : Goal {
 
-    public EternalGoal(string name, int points) : base(name, points) { }
-
-    public override void RecordEvent()
-    {
-        _count++;
-        Console.WriteLine($"Recorded progress on goal: {Name} (+{Points} points)");
+    public Eternal() : base() {
+        
     }
-
-    public override string GetStatus()
-    {
-        return $"{_count}x {Name}";
+    public Eternal(string name, string description, double points, int timesFinished):
+    base(name, description, points, timesFinished) {
+        
     }
+    public override bool IsComplete(){
+        return false;
+    }
+    public override double RecordEvent(){
+        base.RecordEvent();
+        return AwardPoints(this._points);
+    }
+    public override string SerializeSelf(){
+        this._formattedString = "eternal";
+        return base.SerializeSelf();
+    }
+    public override void ListGoal() {
+        base.ListGoal();
+        Console.Write($" --- Eternal Goal\n");
+    }
+    
 }
