@@ -12,7 +12,7 @@ class ReflectingActivity
 
     public string instruction_1()
     {
-        return "This activity will help you relax by walking your thought breathing in and out slowly. Clear your mind and focus on your breathing";
+        return "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
     }
 
     private static List<string> questions = new List<string>
